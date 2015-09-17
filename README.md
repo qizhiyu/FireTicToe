@@ -19,12 +19,19 @@ Function
 Use cases
 --------------------------------------
 
+0. UI
+
+Screen is a big area, nearly 100% of the browser window, with 3 x 3 = 9 grids;  
+right 3/12 is information area, where player/game information is displayed. 
+
 1. Create game
 
 Only two are allowed, and uncompleted game is reloaded at the beginning;  
-Screen is a big area, nearly 100% of the browser window, with 9 grids;
 
 2. Play game
 
 There is a sign indicating whom has the turn, and the symbol (X/O);  
-Current player clicks in an empty grid to set a symbol; If the grid is not empty, nothing happens;  
+Current player clicks in an empty grid to set a symbol; 
+  If the grid is not empty, nothing happens;  
+  when it's the last grid, game over;
+  
