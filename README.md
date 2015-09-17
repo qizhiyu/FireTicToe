@@ -1,12 +1,12 @@
 # FireTicToe
-A game for my kids who are currently 10417 kilometres from me
+A game for me and my kids who are currently 10417 kilometres from me
 
 Design
 --------------------------------------
 
-Backend:	AngularFire
-Server:		Azure
-Frontend:	Bootstrap
+Backend:	AngularFire<br />
+Server:		Azure<br />
+Frontend:	Bootstrap<br />
 
 Function
 --------------------------------------
@@ -16,3 +16,15 @@ Function
 3. When someone makes a line of three, he/she wins
 4. When all positions are occupied, game due
 
+Use cases
+--------------------------------------
+
+1. Create game
+
+Only two are allowed, and uncompleted game is reloaded at the beginning;  
+Screen is a big area, nearly 100% of the browser window, with 9 grids;
+
+2. Play game
+
+There is a sign indicating whom has the turn, and the symbol (X/O);  
+Current player clicks in an empty grid to set a symbol; If the grid is not empty, nothing happens;  
