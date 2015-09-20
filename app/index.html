@@ -12,31 +12,29 @@
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
-    <script src="bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>
     <!-- endbower -->
+    <script src="js/domain.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/user.js"></script>
 </head>
 <body ng-controller="mainController">
-    <!-- CHAT MARKUP -->
-    <div class="container">
-        <header>Tictoe</header>
-
-        <div class="toolbar">
-            <label for="nameInput">Name:</label>
-            <input ng-model="name" type="text" id="nameInput" placeholder="enter a name...">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <table class="table table-bordered table-hover">
+                    <tr ng-repeat="i in [0,1,2]">
+                        <td ng-repeat="j in [0,1,2]"
+                            ng-class="{clickable: cell(i,j)==0}"
+                            ng-style="{width:50, 'height':50, 'font-size': 50-10, 'line-height': 50 - 10 + 'px'}"
+                            ng-click="move($parent.$index, $index)">
+                            <span ng-show="cell(i,j)>0">
+                                {{cell(i,j)}}
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-
-        <div id="example-messages" class="example-chat-messages">
-            <span ng-repeat="i in ">
-                <strong class="example-chat-username">{{ msg.from }}</strong>
-                {{ msg.body }}
-            </span>
-        </div>
-
-        <footer>
-            <input ng-model="msg" ng-keydown="addMessage($event)" type="text" id="messageInput" placeholder="Type a message...">
-        </footer>
     </div>
-
 </body>
 </html>

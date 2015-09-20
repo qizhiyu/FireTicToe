@@ -1,22 +1,17 @@
 ﻿'use strict';
-var fireTicToeApp = angular.module("fireTicToeApp", ["firebase"]);
 
-fireTicToeApp.controller("mainController", ["$scope", "$firebaseArray",
-  function ($scope, $firebaseArray) {
-      var ref = new Firebase("https://glowing-inferno-9282.firebaseio.com//tictoe/game1/");
-      $scope.messages = $firebaseArray(ref);
+var fireTicToeApp = angular.module("fireTicToeApp", ["firebase", "fireTicToeApp2"]);
+//console.debug(domain);
 
-      //ADD MESSAGE METHOD
-      $scope.addMessage = function (e) {
-
-          //LISTEN FOR RETURN KEY
-          if (e.keyCode === 13 && $scope.msg) {
-              //ALLOW CUSTOM OR ANONYMOUS USER NAMES
-              var name = $scope.name || "anonymous";
-              $scope.messages.$add({ from: name, body: $scope.msg });
-              //RESET MESSAGE
-              $scope.msg = "";
-          }
-      }
-  }
+fireTicToeApp.controller("mainController", ['$scope', 'domain', function ($scope, domain) {
+    $scope.cell = function (i, j) {
+        //console.debug(domain.getVal(i,j));
+        return domain.getVal(i, j);
+    };
+    $scope.move = function (i, j) {
+        console.log('moving: ' + i + ',' + j)
+        var playerid = 1;
+        domain.setVal(i, j, playerid);
+    };
+}
 ]);
