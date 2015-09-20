@@ -1,0 +1,42 @@
+﻿<html ng-app="fireTicToeApp">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>
+    <!-- endbower -->
+    <script src="js/main.js"></script>
+</head>
+<body ng-controller="mainController">
+    <!-- CHAT MARKUP -->
+    <div class="container">
+        <header>Tictoe</header>
+
+        <div class="toolbar">
+            <label for="nameInput">Name:</label>
+            <input ng-model="name" type="text" id="nameInput" placeholder="enter a name...">
+        </div>
+
+        <div id="example-messages" class="example-chat-messages">
+            <span ng-repeat="i in ">
+                <strong class="example-chat-username">{{ msg.from }}</strong>
+                {{ msg.body }}
+            </span>
+        </div>
+
+        <footer>
+            <input ng-model="msg" ng-keydown="addMessage($event)" type="text" id="messageInput" placeholder="Type a message...">
+        </footer>
+    </div>
+
+</body>
+</html>

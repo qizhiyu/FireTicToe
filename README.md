@@ -26,7 +26,7 @@ right 3/12 is information area, where player/game information is displayed.
 
 1. Create game
 
-Only two are allowed, and uncompleted game is reloaded at the beginning;  
+Only two players are allowed, and uncompleted game is reloaded at the beginning;  
 
 2. Play game
 
