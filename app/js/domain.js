@@ -7,7 +7,7 @@ angular.module("fireTicToeApp2", ["firebase"])
 	    //console.debug(remoteBoard);
 
 	    var board = [];
-
+	    var resetting = false;
 	    var createBoard = function () {
 	        if (typeof (remoteBoard[0]) == 'undefined') {
 	            for (var i = 0; i < 3; i++) {
@@ -122,6 +122,11 @@ angular.module("fireTicToeApp2", ["firebase"])
 	            return board[i][j];
 	        },
 	        setVal: function (i, j, v) {
+	            if (typeof (board[0]) == 'undefined')
+	                return;
+	            if (resetting)
+	                return;
+
 	            var val = sp.getVal(i, j);
 	            if (val > 0 || v > 2) {
 	                return;
@@ -131,10 +136,6 @@ angular.module("fireTicToeApp2", ["firebase"])
 	            remoteBoard[i] = remoteBoard[i] || {};
 	            remoteBoard[i][j] = v;
 	            remoteBoard.$save();
-
-	            if (isFinished()) {
-	                prepareReset();
-	            }
 	        }
 	    };
 
@@ -144,6 +145,9 @@ angular.module("fireTicToeApp2", ["firebase"])
 
 	    //reset game with all cells as 0 
 	    var prepareReset = function () {
+	        if (resetting)
+	            return;
+	        resetting = true;
 	        console.log('preparing to reset in 10 sec..');
 	        $timeout(function () {
 	            console.log('resetting..');
@@ -155,6 +159,7 @@ angular.module("fireTicToeApp2", ["firebase"])
 	            }
 	            remoteBoard.$save();
 	            populateBoard();
+	            resetting = false;
 	        }, 10 * 1000);
 	    };
 

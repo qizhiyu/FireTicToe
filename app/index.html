@@ -28,7 +28,7 @@
                             ng-style="{width:50, 'height':50, 'font-size': 50-10, 'line-height': 50 - 10 + 'px'}"
                             ng-click="move($parent.$index, $index)">
                             <span ng-show="cell(i,j)>0">
-                                {{cell(i,j)}}
+                                {{(cell(i,j)==1)?'X':'O'}}
                             </span>
                         </td>
                     </tr>
