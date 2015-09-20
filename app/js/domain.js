@@ -34,15 +34,15 @@ angular.module("fireTicToeApp2", ["firebase"])
 	    var winnerId = function () {
 	        var found = true;
 
-	        //vertical
+	        //horizontal
 	        for (var i = 0; i < 3; i++) {
 	            found = true;
 	            for (var j = 1; j < 3; j++) {
-	                if (board[i][j - 1] != board[i][j]) {
+	                if (board[i][j] == 0) {
 	                    found = false;
 	                    break;
 	                }
-	                if (board[i][j] == 0) {
+	                if (board[i][j - 1] != board[i][j]) {
 	                    found = false;
 	                    break;
 	                }
@@ -52,21 +52,21 @@ angular.module("fireTicToeApp2", ["firebase"])
 	            }
 	        }
 
-	        //horizontal
-	        for (var i = 1; i < 3; i++) {
+	        //vertical
+	        for (var i = 0; i < 3; i++) {
 	            found = true;
-	            for (var j = 0; j < 3; j++) {
-	                if (board[j][i - 1] != board[j][i]) {
+	            for (var j = 1; j < 3; j++) {
+	                if (board[j][i] == 0) {
 	                    found = false;
 	                    break;
 	                }
-	                if (board[j][i] == 0) {
+	                if (board[j-1][i] != board[j][i]) {
 	                    found = false;
 	                    break;
 	                }
 	            }
 	            if (found) {
-	                return board[0][j];
+	                return board[0][i];
 	            }
 	        }
 
@@ -144,7 +144,7 @@ angular.module("fireTicToeApp2", ["firebase"])
 
 	    //reset game with all cells as 0 
 	    var prepareReset = function () {
-	        console.log('preparing to reset in ~15 sec..');
+	        console.log('preparing to reset in 10 sec..');
 	        $timeout(function () {
 	            console.log('resetting..');
 	            for (var i = 0; i < 3; i++) {
