@@ -14,7 +14,8 @@ Function
 1. 2 players play Tic-Toe game
 2. Everyone gets a move each turn
 3. When someone makes a line of three, he/she wins
-4. When all positions are occupied, game due
+4. When all positions are occupied, game deuce
+5. Game resets in 10s after it ends
 
 Use cases
 --------------------------------------
@@ -22,7 +23,7 @@ Use cases
 0. UI
 
 Screen is a big area, nearly 100% of the browser window, with 3 x 3 = 9 grids;  
-right 3/12 is information area, where player/game information is displayed. 
+Information area is at top, where player/game information is displayed. 
 
 1. Create game
 
