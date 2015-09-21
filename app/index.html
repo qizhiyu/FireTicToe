@@ -22,8 +22,18 @@
         <div class="row-fluid">
             <div class="span12">
                 <h3>
-                    Tictoe
+                    Tictoe game <span class="label label-default"
+      ng-class="user.id>1?'label-warning':'label-info'"
+      ng-hide="user==null">{{user.id>1?"Dad":"Guo"}}</span>
                 </h3>
+                <div class="input-group" ng-show="user==null">
+                    <input class="form-control" ng-model="email" />
+                    <span class="input-group-btn">
+                        <button class=" btn btn-default" ng-click="login(email)">
+                            Confirm
+                        </button>
+                    </span>
+                </div>
                 <table class="table table-bordered table-hover">
                     <tr ng-repeat="i in [0,1,2]">
                         <td ng-repeat="j in [0,1,2]"

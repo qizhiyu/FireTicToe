@@ -1,10 +1,12 @@
 ﻿'use strict';
 
 angular.module("fireTicToeApp2", ["firebase"])
-	.factory("domain", ['$firebaseObject', '$timeout', function ($firebaseObject, $timeout) {
-	    var ref = new Firebase("https://glowing-inferno-9282.firebaseio.com/tictoe/game1/");
-	    var remoteBoard = $firebaseObject(ref.child('board'));
+	.factory("domain", ['$firebaseArray', '$firebaseObject', '$timeout', function ($firebaseArray,$firebaseObject, $timeout) {
+	    var ref = new Firebase("https://glowing-inferno-9282.firebaseio.com/tictoe/");
+
+	    var remoteBoard = $firebaseObject(ref.child("game1").child('board'));
 	    //console.debug(remoteBoard);
+	    var players = $firebaseArray(ref.child("player"));
 
 	    var board = [];
 	    var resetting = false;
@@ -141,7 +143,15 @@ angular.module("fireTicToeApp2", ["firebase"])
 	            remoteBoard[i] = remoteBoard[i] || {};
 	            remoteBoard[i][j] = v;
 	            remoteBoard.$save();
+	        },
+	        getPlayerId: function (uid) {
+	            for (var i = 0 ; i < players.length; i++) {
+	                if (players[i].Uid == uid)
+	                    return i + 1;
+	            };
+	            return 0;
 	        }
+
 	    };
 
 	    var isFinished = function () {
