@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 angular.module("fireTicToeApp2", ["firebase"])
 	.factory("domain", ['$firebaseArray', '$firebaseObject', '$timeout', function ($firebaseArray,$firebaseObject, $timeout) {
@@ -150,6 +150,18 @@ angular.module("fireTicToeApp2", ["firebase"])
 	                    return i + 1;
 	            };
 	            return 0;
+	        },
+	        isMyTurn: function (id) {
+	            var sum = 0;
+	            for (var i = 0; i < 3; i++)
+	                for (var j = 0; j < 3; j++)
+	                    sum += remoteBoard[i][j];
+
+	            console.log(sum);
+	            return sum % 3 == (id-1);
+	        },
+	        getWinnerId: function () {
+	            return winnerId();
 	        }
 
 	    };

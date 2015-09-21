@@ -4,11 +4,13 @@
     <title></title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap3-dialog/dist/css/bootstrap-dialog.css" />
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/bootstrap3-dialog/dist/js/bootstrap-dialog.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
@@ -21,11 +23,11 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
-                <h3>
+                <h1>
                     Tictoe game <span class="label label-default"
-      ng-class="user.id>1?'label-warning':'label-info'"
-      ng-hide="user==null">{{user.id>1?"Dad":"Guo"}}</span>
-                </h3>
+                                      ng-class="user.id>1?'label-warning':'label-info'"
+                                      ng-hide="user==null">{{getUserName()}}</span><span ng-show="isMyTurn()">&larr;</span>
+                </h1>
                 <div class="input-group" ng-show="user==null">
                     <input class="form-control" ng-model="email" />
                     <span class="input-group-btn">
@@ -34,11 +36,11 @@
                         </button>
                     </span>
                 </div>
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered">
                     <tr ng-repeat="i in [0,1,2]">
                         <td ng-repeat="j in [0,1,2]"
                             ng-class="{clickable: cell(i,j)==0}"
-                            ng-style="{width:50, 'height':50, 'font-size': 50-10, 'line-height': 50 - 10 + 'px'}"
+                            ng-style="{width:50, 'height':100, 'font-size': 100-10, 'line-height': 100 - 10 + 'px'}"
                             ng-click="move($parent.$index, $index)">
                             <span ng-show="cell(i,j)>0">
                                 {{(cell(i,j)==1)?'X':'O'}}
@@ -49,5 +51,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>
