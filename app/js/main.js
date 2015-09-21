@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 var fireTicToeApp = angular.module("fireTicToeApp", ["firebase", "fireTicToeApp2"]);
 //console.debug(domain);
@@ -63,7 +63,7 @@ fireTicToeApp.controller("mainController", ['$scope', 'domain', '$firebaseAuth',
         };
 
         $scope.cell = function (i, j) {
-            return domain.getVal(i, j);
+            return domain.getVal(Math.floor(i), j);
         };
 
         var gameEnd = function (winnerId, id) {

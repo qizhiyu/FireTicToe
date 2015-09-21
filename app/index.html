@@ -18,6 +18,23 @@
     <script src="js/domain.js"></script>
     <script src="js/main.js"></script>
     <script src="js/user.js"></script>
+    <style>
+        .cell {
+            float: left;
+            width: 30%;
+            padding-bottom: 30%; /* = width for a 1:1 aspect ratio */
+            margin: 1.66%;
+            background-color: lightgreen;
+            background-size: 100% auto;
+        }
+        .x {
+            background-image: url(x.png);
+        }
+        .o {
+            background-image: url(o.png);
+        }
+     
+    </style>
 </head>
 <body ng-controller="mainController">
     <div class="container-fluid">
@@ -36,18 +53,14 @@
                         </button>
                     </span>
                 </div>
-                <table class="table table-bordered">
-                    <tr ng-repeat="i in [0,1,2]">
-                        <td ng-repeat="j in [0,1,2]"
-                            ng-class="{clickable: cell(i,j)==0}"
-                            ng-style="{width:50, 'height':100, 'font-size': 100-10, 'line-height': 100 - 10 + 'px'}"
-                            ng-click="move($parent.$index, $index)">
-                            <span ng-show="cell(i,j)>0">
-                                {{(cell(i,j)==1)?'X':'O'}}
-                            </span>
-                        </td>
-                    </tr>
-                </table>
+                <div style="max-width:600px;">
+                    <div ng-repeat="i in [0,1,2]">
+                        <div class="cell" ng-repeat="j in [0,1,2]" ng-class="cell(i,j)==0?'':((cell(i,j)==1)?'x':'o')"
+                             ng-click="move($parent.$index, $index)">
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
