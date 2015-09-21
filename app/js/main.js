@@ -13,6 +13,11 @@ fireTicToeApp.controller("mainController", ['$scope', 'domain', '$firebaseAuth',
         $scope.authObj = $firebaseAuth(ref);
 
         $scope.login = function (email) {
+            if (email == "Guo")
+                email = "staythinking@gmail.com";
+            else if(email == "Dad")
+                email = "zhiyu.qi@gmail.com";
+
             $scope.authObj.$authWithPassword({
                 email: email,
                 password: "1"

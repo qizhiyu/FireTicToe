@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 angular.module("fireTicToeApp2", ["firebase"])
 	.factory("domain", ['$firebaseArray', '$firebaseObject', '$timeout', function ($firebaseArray,$firebaseObject, $timeout) {
@@ -37,7 +37,7 @@ angular.module("fireTicToeApp2", ["firebase"])
 	        }
 	    };
 
-	    //return winner id (1,2), 0 if not finished, -1 due
+	    //return winner id (1,2), 0 if not finished, -1 Deuce
 	    var winnerId = function () {
 	        var found = true;
 
@@ -108,9 +108,10 @@ angular.module("fireTicToeApp2", ["firebase"])
 	            return board[0][2];
 	        }
 
+            //check deuce
 	        var finished = true;
 	        for (var i = 0; i < 3; i++) {
-	            for (var j = 1; j < 3; j++) {
+	            for (var j = 0; j < 3; j++) {
 	                if (board[i][j] == 0) {
 	                    finished = false;
 	                    break;
@@ -157,7 +158,7 @@ angular.module("fireTicToeApp2", ["firebase"])
 	                for (var j = 0; j < 3; j++)
 	                    sum += remoteBoard[i][j];
 
-	            console.log(sum);
+	            //console.log(sum);
 	            return sum % 3 == (id-1);
 	        },
 	        getWinnerId: function () {
@@ -172,16 +173,37 @@ angular.module("fireTicToeApp2", ["firebase"])
 
 	    //reset game with all cells as 0 
 	    var prepareReset = function () {
-	        if (resetting)
-	            return;
-	        resetting = true;
-	        console.log('preparing to reset in 10 sec..');
-	        $timeout(function () {
-	            console.log('resetting..');
-	            reset();
-	            populateBoard();
-	            resetting = false;
-	        }, 10 * 1000);
+            //using transaction to avoid dupcliated resetting
+	        var refReset = new Firebase("https://glowing-inferno-9282.firebaseio.com/tictoe/game1/state");
+	        $firebaseObject(refReset).$loaded().then(function () {
+	            refReset.transaction(function (currentData) {
+	                console.log("currentData" , currentData);
+	                if (currentData != null && currentData != 1) {
+	                    return 1;
+	                }
+	                else {
+	                    console.log("resetting already started");
+	                    return;
+	                }
+	            }, function (error, committed, snapshot) {
+	                if (error) {
+	                    console.log('Transaction failed abnormally!', error);
+	                } else if (!committed) {
+	                    console.log('We aborted the transaction (because 1 already exists).');
+	                } else {
+	                    console.log('preparing to reset in 10 sec..');
+	                    $timeout(function () {
+	                        console.log('resetting..');
+	                        reset();
+	                        populateBoard();
+	                        refReset.transaction(function () {
+	                            return "0";
+	                        });
+	                    }, 10 * 1000);
+	                }
+	                console.log("data: ", snapshot.val());
+	            });
+	        });
 	    };
 
 	    var boardChanged = function () {

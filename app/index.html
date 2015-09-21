@@ -45,15 +45,15 @@
                                       ng-class="user.id>1?'label-warning':'label-info'"
                                       ng-hide="user==null">{{getUserName()}}</span><span ng-show="isMyTurn()">&larr;</span>
                 </h1>
-                <div class="input-group" ng-show="user==null">
-                    <input class="form-control" ng-model="email" />
-                    <span class="input-group-btn">
-                        <button class=" btn btn-default" ng-click="login(email)">
-                            Confirm
-                        </button>
-                    </span>
-                </div>
                 <div style="max-width:600px;">
+                    <div class="input-group" ng-show="user==null">
+                        <input class="form-control" ng-model="email" placeholder="enter your name" />
+                        <span class="input-group-btn">
+                            <button class=" btn btn-default" ng-click="login(email)">
+                                Confirm
+                            </button>
+                        </span>
+                    </div>
                     <div ng-repeat="i in [0,1,2]">
                         <div class="cell" ng-repeat="j in [0,1,2]" ng-class="cell(i,j)==0?'':((cell(i,j)==1)?'x':'o')"
                              ng-click="move($parent.$index, $index)">
