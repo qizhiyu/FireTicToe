@@ -1,0 +1,26 @@
+{
+  "name": "firetictoe",
+  "dependencies": {
+    "serve-static": "*",
+    "connect": "3.1.*"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qizhiyu/FireTicToe.git"
+  },
+  "keywords": [
+    "AngularJS",
+    "Firebase",
+    "Tictoe"
+  ],
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/qizhiyu/FireTicToe/issues"
+  },
+  "homepage": "https://github.com/qizhiyu/FireTicToe#readme"
+}
