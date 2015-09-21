@@ -5,7 +5,7 @@ Design
 --------------------------------------
 
 Backend:	AngularFire<br />
-Server:		Azure<br />
+Server:		Firebase<br />
 Frontend:	Bootstrap<br />
 
 Function
