@@ -13,9 +13,9 @@ fireTicToeApp.controller("mainController", ['$scope', 'domain', '$firebaseAuth',
         $scope.authObj = $firebaseAuth(ref);
 
         $scope.login = function (email) {
-            if (email == "Guo")
+            if (email.toUpperCase() == "GUO")
                 email = "staythinking@gmail.com";
-            else if(email == "Dad")
+            else if(email.toUpperCase() == "BA")
                 email = "zhiyu.qi@gmail.com";
 
             $scope.authObj.$authWithPassword({
@@ -60,8 +60,8 @@ fireTicToeApp.controller("mainController", ['$scope', 'domain', '$firebaseAuth',
                 return "Please login";
 
             switch (user.id) {
-                case 2: return "Dad";
-                case 1: return "Guo";
+                case 2: return "BA";
+                case 1: return "GUO";
                 default:
                     return "Loading...";
             }
